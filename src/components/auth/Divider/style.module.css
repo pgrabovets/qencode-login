@@ -1,0 +1,17 @@
+.divider {
+  width: 100%;
+  margin: 30px 0;
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  height: 16px;
+  color: #BEC5CC;
+  gap: 10px;
+  line-height: 16px;
+  font-size: 12px;
+}
+
+.line {
+  border: 1px solid #E3E6E9;
+  width: 100%;
+}

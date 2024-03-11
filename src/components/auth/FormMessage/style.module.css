@@ -1,0 +1,13 @@
+.formMessage {
+  font-size: 15px;
+  font-weight: 400;
+  color: #060E1E;
+  padding: 0;
+  margin: 20px 0;
+  line-height: 20px;
+  text-align: center;
+}
+
+.errorText {
+  color: rgb(224, 36, 36);
+}
