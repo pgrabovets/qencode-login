@@ -3,19 +3,38 @@ import InputField from '@/components/auth/InputField/InputField'
 import PrimaryButton from '@/components/auth/PrimaryButton/PrimaryButton'
 import FormMessage from '@/components/auth/FormMessage/FormMessage'
 import DefaultLink from '@/components/auth/DefaultLink/DefaultLink'
-import { useEmailValidation } from '@/hooks/useEmailValidation';
-import { usePasswordValidation } from '@/hooks/usePasswordValidation'
+import { z } from 'zod'
+import { useState } from 'react';
+
+const validationSchema = z.object({
+  email: z.string().min(1, 'Enter you email').email('Email is not valid'),
+  password: z.string().min(1, 'Enter you password'),
+})
 
 export default function LoginFrom() {
-  const [emailError, validateEmail] = useEmailValidation()
-  const [passwordError, validatePassword] = usePasswordValidation()
+  const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget);
 
-    validateEmail(formData.get('email'));
-    validatePassword(formData.get('password'))
+    const parsed = validationSchema.safeParse({
+      email: formData.get('email'),
+      password: formData.get('password'),
+    })
+
+    if (!parsed.success) {
+      parsed.error.errors.reverse().forEach((error) => {
+        if (error.path[0] === 'email') {
+          setEmailError(error.message)
+        }
+
+        if (error.path[0] === 'password') {
+          setPasswordError(error.message)
+        }
+      })
+    }
   }
   return (
     <form onSubmit={handleSubmit} className={s.loginForm} noValidate>

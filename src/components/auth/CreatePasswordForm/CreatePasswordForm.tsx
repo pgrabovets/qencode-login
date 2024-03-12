@@ -1,19 +1,41 @@
 import s from './style.module.css'
 import InputField from '@/components/auth/InputField/InputField'
 import PrimaryButton from '@/components/auth/PrimaryButton/PrimaryButton'
-import { usePasswordValidation } from '@/hooks/usePasswordValidation'
-import { useConfirmValidation } from '@/hooks/useConfirmValidation'
+import { z } from 'zod'
+import { useState } from 'react';
+
+
+const validationSchema = z.object({
+  password: z.string().min(1, 'Password is required').min(8, 'Password must be at least 8 characters'),
+  confirm: z.string(),
+})
+.refine((data) => data.password === data.confirm, {
+  message: "Passwords don't match",
+  path: ['confirm'],
+})
 
 export default function CreatePasswordForm() {
-  const [passwordError, validatePassword] = usePasswordValidation()
-  const [confirmError, validateConfirm] = useConfirmValidation()
+  const [passwordError, setPasswordError] = useState('')
+  const [confirmError, setConfirmError] = useState('')
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget);
-    const parsedPassword = validatePassword(formData.get('password'))
 
-    if (parsedPassword.success) {
-      validateConfirm(formData.get('password'), formData.get('confirm_password'))
+    const parsed = validationSchema.safeParse({
+      password: formData.get('password'),
+      confirm: formData.get('confirm_password'),
+    })
+
+    setPasswordError('')
+    setConfirmError('')
+    if (!parsed.success) {
+      const error = parsed.error.errors[0]
+      if (error.path[0] === 'password') {
+        setPasswordError(error.message)
+      }
+      if (error.path[0] === 'confirm') {
+        setConfirmError(error.message)
+      }
     }
   }
   return (
