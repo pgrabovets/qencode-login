@@ -22,6 +22,12 @@ export default function InputField({
 }: InputProps) {
   const [showPassword, setShowPassword] = useState(false)
 
+  const togglePasswordVisibility = () => {
+    setShowPassword((value) => {
+      return !value;
+    })
+  }
+
   return (
     <div className={s.marginBottom}>
       {label ? <label className={s.inputLabel} htmlFor={name}>{label}</label> : null}
@@ -35,8 +41,7 @@ export default function InputField({
         { type === 'password' ? (
           <button
             type='button'
-            onMouseDown={() => setShowPassword(true)}
-            onMouseUp={() => setShowPassword(false)}
+            onClick={togglePasswordVisibility}
             className={s.showPasswordBtn}
           >
             <img width={20} height={20} src={showPasswordIcon} alt="show password icon" />

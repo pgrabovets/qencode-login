@@ -1,0 +1,19 @@
+.alert {
+  display: block;
+  border-radius: 8px;
+  font-size: 15px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.alertDanger {
+  border: 1px solid rgb(229, 231, 235);
+  background-color: rgb(253, 242, 242);
+  color: rgb(155, 28, 28);
+}
+
+.alertInfo {
+  border: 1px solid rgb(229, 231, 235);
+  background-color: rgb(235, 245, 255);
+  color: rgb(30, 66, 159);
+}
