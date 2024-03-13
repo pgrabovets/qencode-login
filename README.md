@@ -13,4 +13,4 @@ In the project directory, you can run:
 
 1. `npm install` - Install all dependencies
 2. `npm run dev` - Runs the app in the development mode
-3. open link [http://localhost:5173/]
+3. open link [localhost:5173](http://localhost:5173/)
