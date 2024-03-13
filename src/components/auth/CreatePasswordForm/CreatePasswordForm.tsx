@@ -75,7 +75,6 @@ export default function CreatePasswordForm() {
               setConfirmError(err?.error)
             }
           })
-          return;
         }
         if (typeof data?.detail === 'string') {
           setAlertError(data?.detail)

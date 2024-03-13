@@ -67,7 +67,6 @@ export default function LoginFrom() {
               setPasswordError(err?.error)
             }
           })
-          return;
         }
         if (typeof data?.detail === 'string') {
           setAlertError(data?.detail)
