@@ -4,9 +4,9 @@ Qencode Login UI using React, based on the design from Figma and the Authenticat
 This project was bootstrapped with [Vite](https://vitejs.dev/)
 
 Project include:
-- Login Page: /login
-- Forgot Password:  /forgot-password
-- Reset Password Page: /create-password
+- Login Page: [/login](https://main--phrabovets-qencode-test.netlify.app/login)
+- Forgot Password:  [/forgot-password](https://main--phrabovets-qencode-test.netlify.app/forgot-password)
+- Reset Password Page: [/create-password](https://main--phrabovets-qencode-test.netlify.app/forgot-password)
 
 ## Available Scripts
 In the project directory, you can run:
