@@ -39,7 +39,7 @@ export default function ForgotForm() {
 
     const payload = {
       email: parsed.data.email,
-      redirect_url: 'https://auth-qa.qencode.com/password-set',
+      redirect_url: 'https://phrabovets-qencode-test.netlify.app/create-password',
     }
     passwordReset(payload)
       .then(res => res.json())
